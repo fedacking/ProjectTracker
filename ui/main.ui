@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>772</width>
+    <height>614</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="central_widget">
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>761</width>
+      <height>571</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout"/>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>772</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="men_file">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="action_import"/>
+    <addaction name="action_export"/>
+   </widget>
+   <addaction name="men_file"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="action_import">
+   <property name="text">
+    <string>Import</string>
+   </property>
+  </action>
+  <action name="action_export">
+   <property name="text">
+    <string>Export</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
