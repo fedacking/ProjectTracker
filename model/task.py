@@ -4,11 +4,19 @@ from typing import List
 class Task:
     start_time: str
     end_time: str
+    name: str
+    description: str
+    done: bool
+    hours: int
 
-    def __init__(self):
+    def __init__(self, name: str, description: str, done: bool, start_time="", hours=0):
         self.tasks: List[Task] = []
-        self.start_time = ""
+        self.start_time = start_time
         self.end_time = ""
+        self.name = name
+        self.description = description
+        self.done = done
+        self.hours = hours
 
     def get_start_time(self) -> str:
         result = self.start_time
