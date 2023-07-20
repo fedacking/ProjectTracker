@@ -19,11 +19,11 @@ class Model:
     def export_model(self, file: BinaryIO):
         pickle.dump((self.tasks, self.dates), file)
 
-    def add_task(self, task: Task, parent_task: Task = None):
+    def add_task(self, task: Task):
         self._add_task_date(task)
 
-        if parent_task is not None:
-            parent_task.tasks.append(task)
+        if task.parent is not None:
+            task.parent.tasks.append(task)
         else:
             self.tasks.append(task)
 
@@ -44,5 +44,3 @@ class Model:
 
 
 model = Model()
-new_task = Task("Crear Calendario", "Tener el calendario Creado", False, "2023‐07‐18T19:00:00Z")
-model.add_task(new_task)

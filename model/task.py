@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Union
 
 
 class Task:
@@ -9,10 +9,11 @@ class Task:
     done: bool
     hours: int
 
-    def __init__(self, name: str, description: str, done: bool, start_time="", hours=0):
+    def __init__(self, name: str, description: str, done: bool, start_time="", end_time="", hours=0, parent=None):
         self.tasks: List[Task] = []
+        self.parent: Union[Task, None] = parent
         self.start_time = start_time
-        self.end_time = ""
+        self.end_time = end_time
         self.name = name
         self.description = description
         self.done = done
