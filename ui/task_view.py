@@ -1,6 +1,7 @@
 from typing import Any
 
-from PyQt5.QtCore import QAbstractItemModel, QModelIndex, QVariant, Qt
+from PyQt5.QtCore import QAbstractItemModel, QModelIndex, QVariant, Qt, QPoint
+from PyQt5.QtWidgets import QMenu, QTreeView, QAction
 
 from model.model import model
 from model.task import Task
@@ -8,6 +9,7 @@ from model.task import Task
 
 class TreeModel(QAbstractItemModel):
     header = ("Name", "Description", "Done", "Start Date", "End Date")
+    context_menu_index: QModelIndex
 
     def __init__(self):
         super(QAbstractItemModel, self).__init__()
@@ -75,3 +77,14 @@ class TreeModel(QAbstractItemModel):
             return QVariant()
 
         return self.header[section]
+
+    def edit_task(self):
+        print(self.context_menu_index.internalPointer())
+
+    def delete_task(self):
+        task: Task = self.context_menu_index.internalPointer()
+        if task.parent is not None:
+            task.parent.tasks.remove(task)
+        else:
+            model.tasks.remove(task)
+        self.modelReset.emit()
