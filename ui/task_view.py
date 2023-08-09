@@ -11,8 +11,10 @@ class TreeModel(QAbstractItemModel):
     header = ("Name", "Description", "Done", "Start Date", "End Date")
     context_menu_index: QModelIndex
 
-    def __init__(self):
+    def __init__(self, view: QTreeView):
         super(QAbstractItemModel, self).__init__()
+        self.view = view
+        self.modelReset.connect(self.onModelReset)
 
     def index(self, row: int, column: int, parent: QModelIndex = ...) -> QModelIndex:
         if not self.hasIndex(row, column, parent):
@@ -61,10 +63,10 @@ class TreeModel(QAbstractItemModel):
         if index.column() == 1:
             return task.description
         if index.column() == 2:
-            return task.done
+            return "✔" if task.done else "❌"
         if index.column() == 3:
-            return task.start_time
-        return task.end_time
+            return task.get_start_time()
+        return task.get_end_time()
 
     def flags(self, index: QModelIndex) -> Qt.ItemFlags:
         if not index.isValid():
@@ -88,3 +90,6 @@ class TreeModel(QAbstractItemModel):
         else:
             model.tasks.remove(task)
         self.modelReset.emit()
+
+    def onModelReset(self) -> None:
+        self.view.expandAll()

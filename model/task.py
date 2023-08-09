@@ -30,6 +30,7 @@ class Task:
         return result
 
     def get_end_time(self) -> str:
-        task_list = list(self.tasks)
-        task_list.append(self)
-        return max(map(Task.get_end_time, task_list))
+        max_tasks = ""
+        if len(self.tasks) > 0:
+            max_tasks = max(map(Task.get_end_time, self.tasks))
+        return max(max_tasks, self.end_time)

@@ -17,8 +17,9 @@ class MainWindow(QMainWindow):
         self.action_import.triggered.connect(import_data)
         self.action_export.triggered.connect(export_data)
         self.task_add_button.clicked.connect(self.open_task_dialog)
-        self.task_model = TreeModel()
+        self.task_model = TreeModel(self.task_view)
         self.task_view.setModel(self.task_model)
+        self.task_view.expandAll()
 
         # Context Menu stuff
         self.task_view.setContextMenuPolicy(Qt.CustomContextMenu)
